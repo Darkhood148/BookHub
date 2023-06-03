@@ -24,7 +24,6 @@ function doQuery(sql, params) {
     });
   });
 }
-
 app.set("view engine", "ejs");
 
 const loginRouter = require('./routes/login')(doQuery);
