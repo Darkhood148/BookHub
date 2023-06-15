@@ -17,7 +17,7 @@ function doQuery(sql, params) {
         if (err) {
           reject(err);
         } else {
-          console.log(result);
+          //console.log(result);
           resolve(result);
         }
       });

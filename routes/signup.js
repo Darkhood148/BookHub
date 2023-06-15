@@ -24,9 +24,8 @@ router.get("/", (req, res) => {
 router.post("/", async(req, res) => {
     const {userName, fullName, pswd, cpswd, isAdmin} = req.body;
     console.log(req.body);
-    console.log(userName);
-    console.log(await doQuery('SELECT * FROM users WHERE username = ?;', userName));
-    if (!(await doQuery('SELECT * FROM users WHERE username = ?;', userName))) {
+    const result = await doQuery('SELECT * FROM users WHERE username = ?;', [userName]);
+    if (!result.length) {
         if (pswd === cpswd) {
             let adm = false;
             if(isAdmin==='Y')
@@ -40,7 +39,6 @@ router.post("/", async(req, res) => {
         }
     }
     else {
-        console.log(await doQuery('SELECT * FROM users WHERE username = ?;', userName));
         res.send("User Already Exists");
     }
 });
