@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const {doQuery} = require('../database');
 
-module.exports = function(doQuery) {
+
   router.get("/", (req, res) => {
     res.render("login");
   });
@@ -14,7 +15,5 @@ module.exports = function(doQuery) {
     // console.log(result);
     res.send(result);
   });
-  
 
-  return router;
-};
+module.exports=router;
