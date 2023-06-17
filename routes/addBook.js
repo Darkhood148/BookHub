@@ -8,7 +8,7 @@ const {validateJWT, validateAdmin} = require("../middleware");
 
 router.use(cookieParser());
 
-router.get("/", (req, res) => {
+router.get("/", validateJWT, validateAdmin, (req, res) => {
     res.render("addBook");
 });
 

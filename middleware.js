@@ -1,8 +1,5 @@
-const express = require('express');
 const { doQuery } = require('./database');
-const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const cookieParser = require("cookie-parser");
 const jwt_decoder = require("jwt-decode");
 
 function validateJWT(req, res, next) {

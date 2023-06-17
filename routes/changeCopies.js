@@ -4,14 +4,15 @@ const { doQuery } = require('../database');
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
+const {validateJWT, validateAdmin} = require("../middleware");
 
 router.use(cookieParser());
 
-router.get("/", (req, res) => {
+router.get("/", validateJWT, validateAdmin, (req, res) => {
     res.render("changeCopies");
 });
 
-router.post("/", async (req, res) => {
+router.post("/", validateJWT, validateAdmin, async (req, res) => {
     const { bookName, option, copies } = req.body;
     const result = await doQuery("SELECT * FROM books WHERE name = ?", [bookName]);
     if(result.length === 0){

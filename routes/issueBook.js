@@ -4,14 +4,15 @@ const { doQuery } = require('../database');
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
+const { validateJWT } = require('../middleware');
 
 router.use(cookieParser());
 
-router.get("/", (req, res) => {
+router.get("/", validateJWT, (req, res) => {
     res.render("issueBook");
 });
 
-router.post("/", async (req, res) => {
+router.post("/", validateJWT, async (req, res) => {
 
 });
 
