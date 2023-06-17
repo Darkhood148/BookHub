@@ -14,11 +14,11 @@ router.get("/", (req, res) => {
 router.post("/", async (req, res) => {
     const { bookName, fullName, copies } = req.body;
     const result = await doQuery("SELECT * FROM books WHERE name = ?", [bookName]);
-    if (result.length==0) {
+    if (result.length == 0) {
         await doQuery("INSERT INTO books (name, author, copiesAvailable) VALUES (?, ?, ?);", [bookName, fullName, copies]);
         res.send("SUCCESSFUL");
     }
-    else{
+    else {
         res.send("Book already exists");
     }
 });

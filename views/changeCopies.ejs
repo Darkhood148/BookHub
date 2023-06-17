@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Add Book</title>
+    <title>Change Copies</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
@@ -13,14 +13,14 @@
   <body>
     <div class="display-1 text-center">Add Book</div>
     <div class="container">
-      <form action="/addBook" method="POST">
+      <form action="/changeCopies" method="POST">
         <label class="row my-4">
           Book Name :
           <input type="text" name="bookName" />
         </label>
         <label class="row my-4">
-          Author :
-          <input type="text" name="fullName" />
+          Add/Set/Delete
+          <input type="text" name="option" />
         </label>
         <label class="row my-4">
           Number of Copies :

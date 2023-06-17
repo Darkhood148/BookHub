@@ -11,16 +11,18 @@ db.connect(function(err) {
       throw err;
     }
   });
-function doQuery(sql, params) {
+  function doQuery(sql, params) {
     return new Promise((resolve, reject) => {
       db.query(sql, params, (err, result) => {
         if (err) {
           reject(err);
         } else {
-          //console.log(result);
           resolve(result);
         }
       });
+    })
+    .catch(error => {
+      console.error('An error occurred during query execution:', error);
     });
   }
 module.exports = {

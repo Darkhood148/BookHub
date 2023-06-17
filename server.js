@@ -17,3 +17,6 @@ app.use('/', homeRouter);
 
 const addBookRouter = require('./routes/addBook');
 app.use('/addBook', addBookRouter);
+
+const changeCopiesRouter = require('./routes/changeCopies');
+app.use('/changeCopies', changeCopiesRouter);
