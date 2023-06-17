@@ -14,3 +14,6 @@ app.use('/signup', signupRouter);
 
 const homeRouter = require('./routes/home');
 app.use('/', homeRouter);
+
+const addBookRouter = require('./routes/addBook');
+app.use('/addBook', addBookRouter);

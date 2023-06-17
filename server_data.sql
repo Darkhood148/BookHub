@@ -8,3 +8,9 @@ CREATE TABLE users (
     hash VARCHAR(255) NOT NULL,
     isAdmin BOOLEAN DEFAULT FALSE
 );
+CREATE TABLE books (
+    bookid INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    bookname VARCHAR(255) NOT NULL,
+    author VARCHAR(255),
+    copiesAvailable SMALLINT UNSIGNED
+);
