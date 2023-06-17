@@ -20,3 +20,9 @@ app.use('/addBook', addBookRouter);
 
 const changeCopiesRouter = require('./routes/changeCopies');
 app.use('/changeCopies', changeCopiesRouter);
+
+const bookListRouter = require('./routes/bookList');
+app.use('/bookList', bookListRouter);
+
+const issueBookRouter = require('./routes/issueBook');
+app.use('/issueBook', issueBookRouter);

@@ -10,7 +10,7 @@ CREATE TABLE users (
 );
 CREATE TABLE books (
     bookid INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    bookname VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
     author VARCHAR(255),
     copiesAvailable SMALLINT UNSIGNED
 );

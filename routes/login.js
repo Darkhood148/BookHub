@@ -15,7 +15,6 @@ router.post("/", async (req, res) => {
   const { userName, pswd } = req.body;
   const result = await doQuery('SELECT * FROM users WHERE username = ?', [userName]);
   console.log(req.cookies);
-  console.log("lmao");
   if (!result.length) {
     res.send("User does not exist");
   }
