@@ -16,7 +16,6 @@ router.get("/", validateJWT, validateAdmin, async (req, res) => {
 
 router.post("/", validateJWT, validateAdmin, async (req, res) => {
     const { actionInfo } = req.body;
-    console.log(req.body);
     const code = actionInfo.split("-");
     const bookid=code[1];
     const user=code[2];
@@ -36,6 +35,7 @@ router.post("/", validateJWT, validateAdmin, async (req, res) => {
     }
     else{ //denying checkin request
         await doQuery(`UPDATE checkouts SET status = 'checkinDenied' WHERE ofBook = ? AND byUser = ?`, [bookid, user]);
+        res.send("SUCCESSFUL");
     }
 })
 

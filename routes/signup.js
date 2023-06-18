@@ -22,7 +22,6 @@ router.get("/", (req, res) => {
 
 router.post("/", async(req, res) => {
     const {userName, fullName, pswd, cpswd, isAdmin} = req.body;
-    console.log(req.body);
     const result = await doQuery('SELECT * FROM users WHERE username = ?;', [userName]);
     if (!result.length) {
         if (pswd === cpswd) {

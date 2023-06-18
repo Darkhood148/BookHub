@@ -14,19 +14,16 @@ router.get("/", (req, res) => {
 router.post("/", async (req, res) => {
   const { userName, pswd } = req.body;
   const result = await doQuery('SELECT * FROM users WHERE username = ?', [userName]);
-  console.log(req.cookies["access-token"]);
   if (!result.length) {
     res.send("User does not exist");
   }
   else {
     const isMatch = await bcrypt.compare(pswd, result[0].hash);
-    console.log(isMatch);
     if (isMatch) {
       const accessToken = jwt.sign(
         { userName: userName },
         process.env.JWT_SECRET,
       );
-      console.log(accessToken);
       res.cookie("access-token", accessToken, {
         maxAge: 1000*60*15
       });
