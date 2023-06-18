@@ -23,6 +23,7 @@ db.connect(function(err) {
     })
     .catch(error => {
       console.error('An error occurred during query execution:', error);
+      throw error;
     });
   }
 module.exports = {

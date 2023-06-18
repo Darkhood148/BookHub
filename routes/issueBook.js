@@ -14,9 +14,6 @@ router.get("/", validateJWT, (req, res) => {
 router.post("/", validateJWT, async (req, res) => {
     const { bookid } = req.body;
     const bookinfo = await doQuery("SELECT * FROM books WHERE bookid = ?", [bookid]);
-    console.log(bookinfo[0]);
-    console.log(bookinfo[0].copiesAvailable);
-    console.log(typeof(bookinfo[0].copiesAvailable));
     if (bookinfo.length && bookinfo[0].copiesAvailable > 0) {
         const token = jwt_decoder(req.cookies["access-token"]);
         const result = await doQuery("SELECT * FROM users WHERE username = ?;", [token.userName]);
