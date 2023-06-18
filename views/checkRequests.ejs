@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Add Book</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../public/css/signup.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body>
+    <table class="table table-bordered text-center">
+        <thead>
+            <tr>
+                <th>Checkout ID</th>
+                <th>Book Name</th>
+                <th>By User</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let i = 0; i<data.length; i++){ %>
+                <tr>
+                    <td><%= data[i].checkoutid %></td>
+                    <td><%= data[i].ofBook %></td>
+                    <td><%= data[i].byUser %></td>
+                    <td><%= data[i].status %></td>
+                    <td>
+                      <form action="/checkRequests" method="POST">
+                      <button class="column" type="submit" name="actionInfo" value="<% if(data[i].status === 'pending') { %>p-<% } else { %>c-<% } %><%= data[i].ofBook%>-<%= data[i].byUser %>-a">
+                      <% if(data[i].status === 'pending') { %>
+                          Approve Checkout
+                      <% } else { %>
+                          Approve Checkin
+                      <% } %>
+                      </button>
+                        <button class="column" type="submit" name="actionInfo" value="<% if(data[i].status === 'pending') { %>p-<% } else { %>c-<% } %><%= data[i].ofBook%>-<%= data[i].byUser %>-d">
+                        <% if(data[i].status === 'pending') { %>
+                            Deny Checkout
+                        <% } else { %>
+                            Deny Checkin
+                        <% } %>
+                        </button>
+                        </form>
+                  </td>                  
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+  </body>
+</html>

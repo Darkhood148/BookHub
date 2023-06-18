@@ -26,3 +26,6 @@ app.use('/bookList', bookListRouter);
 
 const issueBookRouter = require('./routes/issueBook');
 app.use('/issueBook', issueBookRouter);
+
+const checkRequestsRouter = require('./routes/checkRequests');
+app.use('/checkRequests', checkRequestsRouter);

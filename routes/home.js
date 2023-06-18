@@ -8,7 +8,8 @@ router.get("/", (req, res) => {
   });
   
 router.post("/", async (req, res) => {
-    console.log(req.body.firstName);
+    const {firstName} = req.body;
+    console.log(firstName);
     const result = [2, 4];
     //console.log(result)
     for (i in result){

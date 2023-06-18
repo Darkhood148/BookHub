@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
       );
       console.log(accessToken);
       res.cookie("access-token", accessToken, {
-        maxAge: 1000*60*5
+        maxAge: 1000*60*15
       });
       res.send("Successful");
     }

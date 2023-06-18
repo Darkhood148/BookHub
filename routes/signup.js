@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const { doQuery } = require('../database');
 const bcrypt = require("bcrypt");
-const crypto = require("crypto");
 
 async function hashPassword(password) {
     const saltRounds = 10;
