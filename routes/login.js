@@ -27,7 +27,7 @@ router.post("/", async (req, res) => {
       res.cookie("access-token", accessToken, {
         maxAge: 1000*60*15
       });
-      res.send("Successful");
+      res.redirect("/profile");
     }
     else {
       res.send("Incorrect password");

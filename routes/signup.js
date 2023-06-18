@@ -30,7 +30,7 @@ router.post("/", async(req, res) => {
             adm=true;
             const {salt, hash} = await hashPassword(pswd);
             await doQuery('INSERT INTO users VALUES (?, ?, ?, ?, ?);', [userName, fullName, salt, hash, adm]);
-            res.send("SUCCESSFUL");
+            res.redirect("/login");
         }
         else {
             res.send("pswds dont match");

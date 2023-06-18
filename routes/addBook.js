@@ -18,7 +18,8 @@ router.post("/", validateJWT, validateAdmin, async (req, res) => {
         res.send("SUCCESSFUL");
     }
     else {
-        res.send("Book already exists");
+        await doQuery(`UPDATE books SET copiesAvailable = copiesAvailable + ? WHERE name = ? AND author = ?`, [copies, bookName, fullName]);
+        res.send("Book already existed. Added Copies");
     }
 });
 
