@@ -16,17 +16,25 @@
     <table class="table table-bordered">
         <thead>
             <tr>
+                <th>Checkout ID</th>
                 <th>Book ID</th>
-                <th>Book Name</th>
-                <th>Author</th>
+                <th>Status</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
             <% for(let i = 0; i<data.length; i++){ %>
                 <tr>
-                    <td><%= data[i].bookid %></td>
-                    <td><%= data[i].name %></td>
-                    <td><%= data[i].author %></td>
+                    <td><%= data[i].checkoutid %></td>
+                    <td><%= data[i].ofBook %></td>
+                    <td><%= data[i].status %></td>
+                    <td>
+                        <form action="/returnBook" method="POST" >
+                            <button type="submit" name="actionInfo" value="<%= data[i].ofBook%>">
+                                Return
+                            </button>
+                        </form>
+                    </td>
                 </tr>
             <% } %>
         </tbody>
@@ -35,17 +43,24 @@
     <table class="table table-bordered">
         <thead>
             <tr>
+                <th>Checkout ID</th>
                 <th>Book ID</th>
-                <th>Book Name</th>
-                <th>Author</th>
+                <th>By</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
             <% for(let i = 0; i<data1.length; i++){ %>
                 <tr>
-                    <td><%= data1[i].bookid %></td>
-                    <td><%= data1[i].name %></td>
-                    <td><%= data1[i].author %></td>
+                    <td><%= data1[i].checkoutid %></td>
+                    <td><%= data1[i].ofBook %></td>
+                    <td><%= data1[i].byUser %></td>
+                    <td>
+                        <form action="/retryCheckin" method="POST" >
+                        <button type="submit" name="actionInfo" value="<%= data1[i].ofBook%>">
+                            Retry
+                        </button></form>
+                    </td>
                 </tr>
             <% } %>
         </tbody>

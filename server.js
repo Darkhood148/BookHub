@@ -32,3 +32,15 @@ app.use('/issueBook', issueBookRouter);
 
 const checkRequestsRouter = require('./routes/checkRequests');
 app.use('/checkRequests', checkRequestsRouter);
+
+const checkinDeniedRequestRouter = require('./routes/checkinDeniedPending');
+app.use('/checkinDeniedRequest', checkinDeniedRequestRouter);
+
+const logoutRouter = require('./routes/logout');
+app.use('/logout', logoutRouter);
+
+const returnBookRouter = require('./routes/returnBook');
+app.use('/returnBook', returnBookRouter);
+
+const retryCheckinRouter = require('./routes/retryCheckin');
+app.use('/retryCheckin', retryCheckinRouter);
