@@ -1,11 +1,6 @@
 const express = require("express");
 const app = express();
 
-app.listen(3000);
-app.use(express.urlencoded({ limit: '10kb', extended: true }));
-
-app.set("view engine", "ejs");
-
 const loginRouter = require('./routes/login');
 app.use('/login', loginRouter);
 
@@ -44,3 +39,8 @@ app.use('/returnBook', returnBookRouter);
 
 const retryCheckinRouter = require('./routes/retryCheckin');
 app.use('/retryCheckin', retryCheckinRouter);
+
+app.listen(3000);
+app.use(express.urlencoded({ limit: '10kb', extended: true }));
+
+app.set("view engine", "ejs");

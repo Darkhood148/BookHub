@@ -3,9 +3,9 @@ const router = express.Router();
 const { doQuery } = require('../database');
 const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
+const jwt = require('jsonwebtoken');
 
 router.use(cookieParser());
-const jwt = require('jsonwebtoken')
 
 async function hashPassword(password) {
     const saltRounds = 10;
