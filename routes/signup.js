@@ -2,13 +2,15 @@ const express = require('express');
 const router = express.Router();
 const { doQuery } = require('../database');
 const bcrypt = require("bcrypt");
+const cookieParser = require("cookie-parser");
+
+router.use(cookieParser());
+const jwt = require('jsonwebtoken')
 
 async function hashPassword(password) {
     const saltRounds = 10;
     const salt = await bcrypt.genSalt(saltRounds);
     const hash = await bcrypt.hash(password, salt);
-    console.log('Salt:', salt);
-    console.log('Hash:', hash);
   
     return {
       salt: salt,
@@ -17,11 +19,15 @@ async function hashPassword(password) {
   }
 
 router.get("/", (req, res) => {
+    if(!req.cookies["access-token"]||!jwt.verify(req.cookies["access-token"], process.env.JWT_SECRET))
     res.render("signup");
+    else
+    res.send("PLEASE LOGOUT FIRST");
 });
 
 router.post("/", async(req, res) => {
     const {userName, fullName, pswd, cpswd, isAdmin} = req.body;
+    if (!req.cookies["access-token"] || !jwt.verify(req.cookies["access-token"], process.env.JWT_SECRET)){
     const result = await doQuery('SELECT * FROM users WHERE username = ?;', [userName]);
     if (!result.length) {
         if (pswd === cpswd) {
@@ -39,6 +45,10 @@ router.post("/", async(req, res) => {
     else {
         res.send("User Already Exists");
     }
+}
+else{
+    res.send("PLEASE LOGOUT FIRST");
+}
 });
 
 module.exports = router;

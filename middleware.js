@@ -11,9 +11,6 @@ function validateJWT(req, res, next) {
 }
 
 async function validateAdmin(req, res, next) {
-    console.log("Entered Middleware");
-    console.log(req.body);
-    console.log(req.cookies["access-token"]);
     const token = req.cookies["access-token"];
     const data = jwt_decoder(token);
     const query = await doQuery("SELECT * FROM users WHERE username = ?", [data.userName]);

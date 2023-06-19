@@ -8,11 +8,15 @@ const cookieParser = require("cookie-parser");
 router.use(cookieParser());
 
 router.get("/", (req, res) => {
+  if(!req.cookies["access-token"]||!jwt.verify(req.cookies["access-token"], process.env.JWT_SECRET))
   res.render("login");
+  else
+  res.send("PLEASE LOGOUT FIRST");
 });
 
 router.post("/", async (req, res) => {
   const { userName, pswd } = req.body;
+  if (!req.cookies["access-token"] || !jwt.verify(req.cookies["access-token"], process.env.JWT_SECRET)){
   const result = await doQuery('SELECT * FROM users WHERE username = ?', [userName]);
   if (!result.length) {
     res.send("User does not exist");
@@ -33,6 +37,10 @@ router.post("/", async (req, res) => {
       res.send("Incorrect password");
     }
   }
+}
+else{
+  res.send("PLEASE LOGOUT FIRST")
+}
 });
 
 module.exports = router;
